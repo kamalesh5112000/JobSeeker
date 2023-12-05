@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    
+
+    <ul class="card-list">
+        {% for title in  job_list%}
+        
+            <li class="card">
+                <a href='{% url "jobs_detail" forloop.counter0 %}'>
+                    <h1>
+                        {{title}}
+                    </h1>
+                </a>
+            </li>
+            </br>
+        {% endfor %}
+        
+        <!-- Add more cards as needed -->
+    </ul>
+
+</body>
+</html>
