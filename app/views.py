@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.template import loader
 
+from app.models import JobPost
+
 
 def index(request):
     # template=loader.get_template('app/index.html')
@@ -24,7 +26,8 @@ job_description=[
 ]
 # Create your views here.
 def job_list(request):
-    context={'job_list':job_title}
+    jobs= JobPost.objects.all()
+    context={'jobs':jobs}
     return render(request,'app/job_list.html',context)
     # list_of_jobs="<ul>"
     # for i in job_title:
@@ -36,9 +39,10 @@ def job_list(request):
 
 def job_detail(request,id):
     try:
-        if id==0:
-            return redirect(reverse('jobs_home'))
-        context={"job_title":job_title[id],"job_description":job_description[id]}
+        print("id",id)
+        job= JobPost.objects.filter(id=id)
+        print("job",job[0].title)
+        context={"job_title":job[0].title,"job_description":job[0].description}
         return render(request,'app/job_detail.html',context)
         
         
